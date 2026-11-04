@@ -1,6 +1,5 @@
-def main():
-    print("Hello from first-project!")
+ # 가위 바위 보 게임 미니 프로젝트
 
-
-if __name__ == "__main__":
-    main()
+print("=" * 30)
+print("가위바위보 게임")
+print("=" * 30)
