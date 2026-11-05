@@ -1,63 +1,107 @@
- # 가위 바위 보 게임 미니 프로젝트
+# # 클래스 정의(선언) : 붕어빵 틀
+# class User:
+#     def __init__ (self, name): # 생성자 : 클래스가 처음 생성될 때 자동으로 호출
+#         self.name = name # 변수를 초기화
 
-import random
+#     def show(self): # 메서드()
+#         return f"회원 이름: {self.name}"
 
-# 스코어 변수는 반복문(while) 바깥에 있어야 게임이 끝나도 점수가 유지/누적 됩니다!
-my_score = 0
-com_score = 0
+# # 인스턴스 생성 : 붕어빵 만들기
+# user_a = User("손흥민")
+# user_b = User("이강인")
 
-while True:
-    print("=" * 40)
-    print("　　　　가위 / 바위 / 보 게임")
-    print("=" * 40)
-    print("1. 가위 / 2. 바위 / 3. 보")
+# # User 클래스로 생성한 인스턴스 (메모리에 생성)
 
-    # 1. 사용자 입력 받기
-    user_input = int(input("번호를 선택하세요. : "))
+# # 클래스의 인스턴스 변수
+# print(user_a.name)
+# print(user_b.name)
 
-    # 2. 컴퓨터 난수 생성 (1~3)
-    com_input = random.randint(1, 3)
+# # 클래스의 메서드 접근
+# print(user_a.show())
+# print(user_b.show())
 
-    # 3. 사용자의 숫자(1, 2, 3)를 문자로 변환
-    if user_input == 1:
-        my_choice = "가위"
-    elif user_input == 2:
-        my_choice = "바위"
-    elif user_input == 3:
-        my_choice = "보"
 
-    # 4. 컴퓨터의 숫자(1, 2, 3)를 문자로 변환
-    if com_input == 1:
-        com_choice = "가위"
-    elif com_input == 2:
-        com_choice = "바위"
-    elif com_input == 3:
-        com_choice = "보"
 
-    # 5. [게임 결과] 출력 포맷 (vs와 컴퓨터 이름 포함)
-    print("\n[게임 결과]")
-    print(f"나: {my_choice} vs {com_choice}")
+# print(type(user_a))
+# print(user_a is user_b)
+# print(id(user_a))
+# print(id(user_b))
 
-    # 6. 승패 판정 및 스코어 계산 조건문
-    if user_input == com_input:
-        print("=> 비김")
-    elif (
-        (user_input == 1 and com_input == 3)
-        or (user_input == 2 and com_input == 1)
-        or (user_input == 3 and com_input == 2)
-    ):
-        print("=> 승리")
-        my_score += 1 # 내 점수 1점 증가
-    else:
-        print("=> 패배")
-        com_score += 1 # 컴퓨터 점수 1점 증가
+# # ============================
 
-    # 7. 현재 스코어 출력문 추가
-    print(f"현재 스코어  나 {my_choice} : {com_score} 컴퓨터\n")
+# class Monitor:
+#     def display_info(self):
+#         # 인스턴스 변수
+#         self.resolution = "1920X1080"
+#         self.size = "27인치"
+#         print(f"모니터 정보\n해상도:  {self.resolution}\n크기: {self.size}\n객체 ID: {id(self)}")
 
-    # 8. 다시 도전 (yes/no) 입력값 검증 및 탈출 로직
-    retry = input("다시 도전 (yes/no) : ")
-    if retry == "no":
-        print("게임을 종료합니다.")
-        break
-    print("-" * 30)
+# monitor = Monitor() # 인스턴스 생성 (모니터 객체 생성)
+# print(id(monitor))  # 모니터 인스턴스의 ID 출력
+
+# monitor.display_info()
+
+# #  ======================
+# class SmartPhone:
+#     def __init__(self, model):
+#         self.model = model # 속성 (Attribute)
+#         self.battery = 50 # 속성 (Attribute)
+
+#     def charge(self, amount):
+#         self.battery += amount
+#         if self.battery > 100:
+#             self.battery = 100
+#             print(f"배터리 충전 완료 : {self.battery}%")
+#         else:
+#             print(f"배터리 충전 중 ... : {self.battery}%")
+
+# phone_a = SmartPhone("아이폰")
+# print(phone_a.model)
+# phone_a.charge(30)
+# phone_a.charge(30)
+
+# phone_b = SmartPhone("갤럭시")
+
+# 은행 계좌 클래스
+
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner           # 계좌 예금주
+        self.balance = balance       # 잔액
+
+    def __str__(self):
+        return f"예금주 : {self.owner}, 잔액: {self.balance:,}"
+
+    def  __repr__(self):
+        return f"예금주 : {self.owner}, 잔액: {self.balance:,}"
+
+    # 입금 처리 메서드
+    def deposit(self, amount):
+        self.balance += amount # 입금 처리
+        print(f"{amount:,} 입금완료 / 잔액 : {self.balance:,}원")
+
+    # 출금 메서드
+    # 잔액 확인 => 잔액 부족 메시 출력
+    def withdraw(self, amount):
+        # Psudo code
+        # 잔액 확인
+        if self.balance < amount:
+            print(f"잔액 부족")
+            return 0
+
+        self.balance -= amount
+        print(f"{amount:,} 출금 처리")
+        return self.balance # 출금 후 잔액 리턴
+
+account_a = BankAccount("양건", 100_000)
+print(account_a)
+account_a.deposit(500_000)
+
+account_a.withdraw(1_000_000)
+
+print(f"잔액:{account_a.withdraw(200_000):,}")
+
+print(f"잔액: {account_a.withdraw(300_000):,}")
+
+account_c = BankAccount("홍길동", 200_000)
+print([account_a, account_c])
