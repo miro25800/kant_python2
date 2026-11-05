@@ -1,12 +1,3 @@
-class shopping_cart:
-    def __init__(self, customer, shopping_list):
-        self.customer = customer
-        self.shopping_list = shopping_list
-
-# 개인 실습
-
-===================================
-
 # shopping cart 클래스 선언
 # 상품 목록 저장 기능
 
@@ -20,10 +11,10 @@ class ShoppingCart:
     # 장바구니 담기
     def add_item(self, item):
         self.bucket.append(item)
-        # 장바구니 빼기
+    # 장바구니 빼기
     def remove_item(self, item):
         self.bucket.remove(item)
-        # 상품 목록 조회
+    # 상품 목록 조회
     def show_items(self):
         return self.bucket
     
