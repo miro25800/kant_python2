@@ -46,4 +46,3 @@ cart.remove_item(item_b)
 # 장바구니에 담긴 상품 목록 조회
 for item in cart.show_items():
     print(item.name, item.price)
-
